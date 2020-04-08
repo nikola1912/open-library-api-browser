@@ -1,5 +1,6 @@
 import React from 'react';
 import { InputGroup, DropdownButton, Dropdown, FormControl, Form, Button } from 'react-bootstrap';
+import { Spinner, Alert } from 'react-bootstrap';
 
 class SearchForm extends React.Component {
     state = {
@@ -8,7 +9,6 @@ class SearchForm extends React.Component {
     }
 
     handleTypeChange(event) {
-        console.log(event);
         this.setState({searchType: event});
     }
 
@@ -23,7 +23,10 @@ class SearchForm extends React.Component {
 
     render() {
         return (
-            <Form onSubmit={event => this.handleFormSubmit(event)}>
+            <Form 
+                onClick={this.props.closeError}
+                onSubmit={event => this.handleFormSubmit(event)}>
+                    
                 <InputGroup className="mb-3">
                     <DropdownButton
                         as={InputGroup.Prepend}
@@ -41,12 +44,26 @@ class SearchForm extends React.Component {
                         <Dropdown.Divider />
                         <Dropdown.Item eventKey="Advanced">Advanced</Dropdown.Item>
                     </DropdownButton>
+
                     <FormControl 
                         value={this.state.searchField} 
-                        onChange={event => this.handleFormChange(event)}
-                        aria-describedby="basic-addon1" />
-                    <Button type="submit">Submit</Button>
+                        onChange={event => this.handleFormChange(event)} />
+
+                    <Button type="submit">
+                        {this.props.isLoading ? <>
+                            <Spinner
+                                as="span"
+                                animation="border"
+                                role="status"
+                                size="sm"
+                            /> Loading...</> : "Submit"}
+                    </Button>
                 </InputGroup>
+
+                {this.props.error ? 
+                    <Alert variant="danger" dismissible>
+                        Something went wrong, try again?
+                    </Alert> : ""}
             </Form>
         )
     }
