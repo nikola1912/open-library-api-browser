@@ -1,11 +1,10 @@
 import React from 'react';
 import { InputGroup, DropdownButton, Dropdown, FormControl, Form, Button } from 'react-bootstrap';
 
-
 class SearchForm extends React.Component {
     state = {
         searchField: "",
-        searchType: ""
+        searchType: "All"
     }
 
     handleTypeChange(event) {
@@ -29,7 +28,7 @@ class SearchForm extends React.Component {
                     <DropdownButton
                         as={InputGroup.Prepend}
                         variant="outline-secondary"
-                        title="Search Type"
+                        title={this.state.searchType}
                         id="input-group-dropdown-1"
                         onSelect={event => this.handleTypeChange(event)}
                     >
