@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchForm from './SearchForm.js';
+import { Spinner } from 'react-bootstrap';
 
 const SEARCH_API = "http://openlibrary.org/search.json?";
 
@@ -16,7 +17,12 @@ class HomePage extends React.Component {
 
     render() {
         return (
-            <SearchForm onSubmit={(event) => this.handleSearcSubmit(event)} />
+            <div className="home-page"> 
+                <SearchForm onSubmit={(event) => this.handleSearchSubmit(event)} />
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            </div>
         )
     }
 }
