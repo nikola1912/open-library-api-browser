@@ -13,6 +13,10 @@
     margin: 35px 0;
 }
 
+.book-pagination * {
+    outline: 0;
+}
+
 .book-container {
     padding: 0 140px;
     display: grid;

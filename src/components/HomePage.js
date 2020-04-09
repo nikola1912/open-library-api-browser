@@ -12,21 +12,25 @@ class HomePage extends React.Component {
         data: null,
         isLoading: false,
         error: null,
-        activePage: 2,
+        activePage: 1,
         pageCount: 1,
         booksPerPage: 20,
         paginationVisable: false
     }
 
+    handlePageChange(newPage) {
+        this.setState({ activePage: newPage });
+    }
+
     handleCloseError() {
-        this.setState({error: null});
+        this.setState({ error: null });
     }
 
     formatData(data) {
         return {
             "start": data.start,
-            "bookCount": data.num_found,
-            "books": data.docs.slice(0, 51).map(book => { 
+            "bookCount": data.docs.length,
+            "books": data.docs.map(book => { 
                 return {
                     "title": book.title,
                     "key": book.key,
@@ -39,7 +43,7 @@ class HomePage extends React.Component {
     }
 
     handleSearchSubmit(data) {
-        /* const query = data.searchType === "All" ? "q" : data.searchType.toLowerCase();
+        const query = data.searchType === "All" ? "q" : data.searchType.toLowerCase();
         const searchData = data.searchField.replace(/ /g, "+");
         this.setState({ isLoading: true });
         fetch(`${SEARCH_API}${query}=${searchData}`)
@@ -47,19 +51,22 @@ class HomePage extends React.Component {
             .then(data => {
                 this.setState({
                     data: this.formatData(data),
+                    paginationVisable: true,
                     isLoading: false
+                }, () => {
+                    const pageCount = Math.floor(this.state.data.bookCount / this.state.booksPerPage);
+                    this.setState({ pageCount: pageCount === 0 ? 1 : pageCount });
                 });
-                console.log(this.state.data.books.slice(0, 20));
             })
-            .catch(error => this.setState({error, isLoading: false})); */
-        console.log(this.formatData(BOOKS));
+            .catch(error => this.setState({error, isLoading: false}));
+        /* console.log(this.formatData(BOOKS));
         this.setState({ data: this.formatData(BOOKS) }, () => {
             const pageCount = Math.floor(this.state.data.bookCount / this.state.booksPerPage);
             this.setState({
                 pageCount,
                 paginationVisable: pageCount !== 1
-            })
-        });
+            }, () => console.log(this.state.data.books.length))
+        }); */
     }
 
     render() {
@@ -73,7 +80,8 @@ class HomePage extends React.Component {
                     error={this.state.error}
                     closeError={() => this.handleCloseError()}/>
 
-                <BookPagination 
+                <BookPagination
+                    onClick={(newPage) => this.handlePageChange(newPage)}
                     visable={this.state.paginationVisable}
                     activePage={this.state.activePage}
                     pageCount={this.state.pageCount} />
@@ -82,7 +90,8 @@ class HomePage extends React.Component {
                     books={this.state.data &&
                         this.state.data.books.slice(firstBookIndex, lastBookIndex)} />
 
-                <BookPagination 
+                <BookPagination
+                    onClick={(newPage) => this.handlePageChange(newPage)}
                     visable={this.state.paginationVisable}
                     activePage={this.state.activePage}
                     pageCount={this.state.pageCount} />

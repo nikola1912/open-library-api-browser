@@ -21,7 +21,7 @@ const BookCard = ({title, author, year, coverID}) => (
             <Card.Title className="book-title">{title}</Card.Title>
             <Card.Subtitle className="book-author">
                 {"by " + (author !== undefined ? author : "")}
-                <i className={author !== undefined && "hidden"}>unknown author</i>
+                <i className={author !== undefined ? "hidden" : ""}>unknown author</i>
             </Card.Subtitle>
         </Card.Body>
         <Card.Img
@@ -30,7 +30,7 @@ const BookCard = ({title, author, year, coverID}) => (
             src={`http://covers.openlibrary.org/b/OLID/${coverID}-L.jpg`} />
         <Card.Footer className="book-year">
             {"published in " + (year !== undefined ? year : "")}
-            <i className={year !== undefined && "hidden"}>unknown year</i>
+            <i className={year !== undefined ? "hidden" : ""}>unknown year</i>
         </Card.Footer>
     </Card>
 )
