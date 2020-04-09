@@ -43,7 +43,7 @@ class HomePage extends React.Component {
     }
 
     handleSearchSubmit(data) {
-        const query = data.searchType === "All" ? "q" : data.searchType.toLowerCase();
+        /* const query = data.searchType === "All" ? "q" : data.searchType.toLowerCase();
         const searchData = data.searchField.replace(/ /g, "+");
         this.setState({ isLoading: true });
         fetch(`${SEARCH_API}${query}=${searchData}&mode=ebooks&has_fulltext=true`)
@@ -58,15 +58,18 @@ class HomePage extends React.Component {
                     this.setState({ pageCount: pageCount === 0 ? 1 : pageCount });
                 });
             })
-            .catch(error => this.setState({error, isLoading: false}));
-        /* console.log(this.formatData(BOOKS));
+            .catch(error => this.setState({error, isLoading: false})); */
         this.setState({ data: this.formatData(BOOKS) }, () => {
             const pageCount = Math.floor(this.state.data.bookCount / this.state.booksPerPage);
             this.setState({
                 pageCount,
-                paginationVisable: pageCount !== 1
-            }, () => console.log(this.state.data.books.length))
-        }); */
+                paginationVisable: true,
+                isLoading: false
+            }, () => {
+                const pageCount = Math.floor(this.state.data.bookCount / this.state.booksPerPage);
+                this.setState({ pageCount: pageCount === 0 ? 1 : pageCount });
+            });
+        });
     }
 
     render() {
