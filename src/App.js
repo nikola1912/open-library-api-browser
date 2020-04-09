@@ -6,10 +6,14 @@ import HomePage from './components/HomePage/HomePage.jsx';
 
 class App extends React.Component {
 
+    displayBookPage(bookData) {
+        console.log(bookData);
+    }
+
     render() {
         return (
             <div className="app">
-                <HomePage />
+                <HomePage onBookClick={(bookData) => this.displayBookPage(bookData)} />
             </div>
         );
     }

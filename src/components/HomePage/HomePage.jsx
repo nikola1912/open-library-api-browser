@@ -47,9 +47,7 @@ class HomePage extends React.Component {
         console.log(bookID);
         fetch(`${BOOK_API}OLID:${bookID}&jscmd=data&format=json`)
             .then(response => response.json())
-            .then(data => {
-                console.log(this.formatBookDetailsData(data, bookID));
-            })
+            .then(data => this.props.onBookClick(this.formatBookDetailsData(data, bookID)))
             .catch(error => console.log(error));
     }
 
