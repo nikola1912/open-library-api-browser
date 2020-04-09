@@ -6,7 +6,6 @@ import BookPagination from './BookPagination.jsx';
 const BOOKS = require('./data.json');
 
 const SEARCH_API = "http://openlibrary.org/search.json?";
-const BOOK_API = 'https://openlibrary.org/api/books?bibkeys=';
 
 class HomePage extends React.Component {
     state = {
@@ -27,30 +26,6 @@ class HomePage extends React.Component {
         this.setState({ error: null });
     }
 
-    formatBookDetailsData(data, bookID) {
-        const book = data["OLID:" + bookID];
-        return {
-            "title": book.title,
-            "pages": book.number_of_pages,
-            "author": book.authors[0].name,
-            "year": book.publish_date,
-            "subjects": book.subjects.map(subject => subject.name),
-            "subjectPlaces": book.subject_places.map(subject => subject.name),
-            "subjectPeople": book.subject_people.map(subject => subject.name),
-            "coverUrl": book.cover.large,
-            "openlibraryUrl": book.url
-        }
-    }
-
-    displayBookPage(bookID) {
-        console.log("Fetching...");
-        console.log(bookID);
-        fetch(`${BOOK_API}OLID:${bookID}&jscmd=data&format=json`)
-            .then(response => response.json())
-            .then(data => this.props.onBookClick(this.formatBookDetailsData(data, bookID)))
-            .catch(error => console.log(error));
-    }
-
     formatBookSearchData(data) {
         return {
             "start": data.start,
@@ -69,7 +44,7 @@ class HomePage extends React.Component {
     }
 
     handleSearchSubmit(data) {
-        const query = data.searchType === "All" ? "q" : data.searchType.toLowerCase();
+        /* const query = data.searchType === "All" ? "q" : data.searchType.toLowerCase();
         const searchData = data.searchField.replace(/ /g, "+");
         this.setState({ isLoading: true });
         fetch(`${SEARCH_API}${query}=${searchData}&mode=ebooks&has_fulltext=true`)
@@ -84,8 +59,8 @@ class HomePage extends React.Component {
                     this.setState({ pageCount: pageCount === 0 ? 1 : pageCount });
                 });
             })
-            .catch(error => this.setState({error, isLoading: false}));
-        /* this.setState({ data: this.formatBookSearchData(BOOKS) }, () => {
+            .catch(error => this.setState({error, isLoading: false})); */
+        this.setState({ data: this.formatBookSearchData(BOOKS) }, () => {
             const pageCount = Math.floor(this.state.data.bookCount / this.state.booksPerPage);
             this.setState({
                 pageCount,
@@ -95,7 +70,7 @@ class HomePage extends React.Component {
                 const pageCount = Math.floor(this.state.data.bookCount / this.state.booksPerPage);
                 this.setState({ pageCount: pageCount === 0 ? 1 : pageCount });
             });
-        }); */
+        });
     }
 
     render() {
@@ -116,7 +91,6 @@ class HomePage extends React.Component {
                     pageCount={this.state.pageCount} />
 
                 <BookContainer
-                    onClick={(bookID) => this.displayBookPage(bookID)}
                     books={this.state.data &&
                         this.state.data.books.slice(firstBookIndex, lastBookIndex)} />
 
