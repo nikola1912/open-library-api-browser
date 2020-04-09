@@ -5,7 +5,7 @@ import { Spinner, Alert } from 'react-bootstrap';
 class SearchForm extends React.Component {
     state = {
         searchField: "",
-        searchType: "All"
+        searchType: "Title"
     }
 
     handleTypeChange(event) {

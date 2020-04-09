@@ -1,0 +1,27 @@
+.book-container {
+    padding: 50px 140px;
+    display: grid;
+    gap: 30px;
+    grid-template: auto / repeat(4, 1fr);
+}
+
+.book-title {
+    font-size: 0.8em;
+}
+
+.book-author {
+    font-size: 0.75em;
+}
+
+.book-cover {
+    height: 320px;
+}
+
+.book-year {
+    font-size: 0.8em;
+}
+
+.hidden {
+    visibility: hidden;
+    display: none;
+}
