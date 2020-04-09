@@ -2,11 +2,13 @@ import React from 'react';
 import '../styles/HomePage.css';
 import { Card } from 'react-bootstrap';
 
-const BookContainer = ({books}) => (
+const BookContainer = ({books, onClick}) => (
     <div className="book-container">
         {books && books.map(book => (
-            <BookCard 
+            <BookCard
+                onClick={(OLID) => onClick(OLID)}
                 key={book.key}
+                OLID={book.OLID}
                 title={book.title}
                 author={book.author}
                 coverID={book.coverID}
@@ -15,8 +17,10 @@ const BookContainer = ({books}) => (
     </div>
 )
 
-const BookCard = ({title, author, year, coverID}) => (
-    <Card className="book-card">
+const BookCard = ({OLID, title, author, year, coverID, onClick}) => (
+    <Card 
+        onClick={() => onClick(OLID)}
+        className="book-card">
         <Card.Body>
             <Card.Title className="book-title">{title}</Card.Title>
             <Card.Subtitle className="book-author">
