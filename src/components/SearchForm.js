@@ -24,10 +24,11 @@ class SearchForm extends React.Component {
     render() {
         return (
             <Form 
+                className="search-form"
                 onClick={this.props.closeError}
                 onSubmit={event => this.handleFormSubmit(event)}>
                     
-                <InputGroup className="mb-3">
+                <InputGroup>
                     <DropdownButton
                         as={InputGroup.Prepend}
                         variant="outline-secondary"

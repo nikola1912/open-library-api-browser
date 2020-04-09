@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Books.css';
+import '../styles/HomePage.css';
 import { Card } from 'react-bootstrap';
 
 const BooksContainer = ({books}) => (
@@ -20,8 +20,8 @@ const BookCard = ({title, author, year, coverID}) => (
         <Card.Body>
             <Card.Title className="book-title">{title}</Card.Title>
             <Card.Subtitle className="book-author">
-                {"by " + (author !== "unknown author" ? author : "")}
-                <i className={author !== "unknown author" ? "hidden" : ""}>unknown author</i>
+                {"by " + (author !== undefined ? author : "")}
+                <i className={author !== undefined && "hidden"}>unknown author</i>
             </Card.Subtitle>
         </Card.Body>
         <Card.Img
@@ -29,8 +29,8 @@ const BookCard = ({title, author, year, coverID}) => (
             variant="top"
             src={`http://covers.openlibrary.org/b/OLID/${coverID}-L.jpg`} />
         <Card.Footer className="book-year">
-            {"published in " + (year !== "unknown year" ? year : "")}
-            <i className={year !== "unknown year" ? "hidden" : ""}>unknown year</i>
+            {"published in " + (year !== undefined ? year : "")}
+            <i className={year !== undefined && "hidden"}>unknown year</i>
         </Card.Footer>
     </Card>
 )
