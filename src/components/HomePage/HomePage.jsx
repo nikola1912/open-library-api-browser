@@ -91,6 +91,7 @@ class HomePage extends React.Component {
                     pageCount={this.state.pageCount} />
 
                 <BookContainer
+                    visable={!(this.state.data === null)}
                     books={this.state.data &&
                         this.state.data.books.slice(firstBookIndex, lastBookIndex)} />
 

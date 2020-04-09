@@ -3,8 +3,8 @@ import '../../styles/HomePage.css';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const BookContainer = ({books}) => (
-    <div className="book-container">
+const BookContainer = ({books, visable}) => (
+    <div className={`book-container ${visable ? "" : "hidden"}`}>
         {books && books.map(book => (
             <BookCard
                 key={book.key}
