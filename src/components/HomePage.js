@@ -46,7 +46,7 @@ class HomePage extends React.Component {
         const query = data.searchType === "All" ? "q" : data.searchType.toLowerCase();
         const searchData = data.searchField.replace(/ /g, "+");
         this.setState({ isLoading: true });
-        fetch(`${SEARCH_API}${query}=${searchData}`)
+        fetch(`${SEARCH_API}${query}=${searchData}&mode=ebooks&has_fulltext=true`)
             .then(response => response.json())
             .then(data => {
                 this.setState({
