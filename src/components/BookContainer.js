@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/HomePage.css';
 import { Card } from 'react-bootstrap';
 
-const BooksContainer = ({books}) => (
+const BookContainer = ({books}) => (
     <div className="book-container">
         {books && books.map(book => (
             <BookCard 
@@ -35,4 +35,4 @@ const BookCard = ({title, author, year, coverID}) => (
     </Card>
 )
 
-export default BooksContainer;
+export default BookContainer;

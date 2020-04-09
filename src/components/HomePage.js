@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchForm from './SearchForm.js';
-import BooksContainer from './BooksContainer.js';
+import BookContainer from './BookContainer.js';
 import BookPagination from './BookPagination.js';
 
 const BOOKS = require('./data.json');
@@ -12,8 +12,9 @@ class HomePage extends React.Component {
         data: null,
         isLoading: false,
         error: null,
-        activePage: 1,
+        activePage: 2,
         pageCount: 1,
+        booksPerPage: 20,
         paginationVisable: false
     }
 
@@ -53,7 +54,7 @@ class HomePage extends React.Component {
             .catch(error => this.setState({error, isLoading: false})); */
         console.log(this.formatData(BOOKS));
         this.setState({ data: this.formatData(BOOKS) }, () => {
-            const pageCount = Math.floor(this.state.data.bookCount / 6);
+            const pageCount = Math.floor(this.state.data.bookCount / this.state.booksPerPage);
             this.setState({
                 pageCount,
                 paginationVisable: pageCount !== 1
@@ -62,6 +63,8 @@ class HomePage extends React.Component {
     }
 
     render() {
+        const firstBookIndex = (this.state.activePage - 1) * this.state.booksPerPage;
+        const lastBookIndex = this.state.activePage * this.state.booksPerPage;
         return (
             <div className="home-page">
                 <SearchForm
@@ -69,11 +72,16 @@ class HomePage extends React.Component {
                     isLoading={this.state.isLoading}
                     error={this.state.error}
                     closeError={() => this.handleCloseError()}/>
+
                 <BookPagination 
                     visable={this.state.paginationVisable}
                     activePage={this.state.activePage}
                     pageCount={this.state.pageCount} />
-                <BooksContainer books={this.state.data && this.state.data.books} />
+
+                <BookContainer
+                    books={this.state.data &&
+                        this.state.data.books.slice(firstBookIndex, lastBookIndex)} />
+
                 <BookPagination 
                     visable={this.state.paginationVisable}
                     activePage={this.state.activePage}
