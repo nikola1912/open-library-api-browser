@@ -7,7 +7,7 @@
 }
 
 .search-form {
-    width: 50%;
+    min-width: 50vw;
 }
 
 .book-pagination {
@@ -21,7 +21,7 @@
 .book-container {
     padding: 50px 140px;
     display: grid;
-    gap: 30px;
+    gap: 50px;
     grid-template: auto / repeat(4, 1fr);
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
@@ -46,7 +46,7 @@
 }
 
 .book-cover {
-    height: 320px;
+    height: 380px;
 }
 
 .book-year {

@@ -13,9 +13,9 @@ class BookPage extends React.Component {
             "pages": book.number_of_pages,
             "author": book.authors[0].name,
             "year": book.publish_date,
-            "subjects": book.subjects.map(subject => subject.name),
-            "subjectPlaces": book.subject_places.map(subject => subject.name),
-            "subjectPeople": book.subject_people.map(subject => subject.name),
+            "subjects": book.subjects && book.subjects.map(subject => subject.name),
+            "subjectPlaces": book.subject_places && book.subject_places.map(subject => subject.name),
+            "subjectPeople": book.subject_people && book.subject_people.map(subject => subject.name),
             "coverUrl": book.cover.large,
             "openlibraryUrl": book.url
         }

@@ -7,16 +7,6 @@ import HomePage from './components/HomePage/HomePage.jsx';
 import BookPage from './components/BookPage.jsx';
 
 class App extends React.Component {
-    state = {
-        testData: null
-    }
-
-    displayBookPage(bookData) {
-        this.setState({
-            testData: "SEOIFJSEIOFO"
-        })
-        console.log("HELLO THERE");
-    }
 
     render() {
         return (
@@ -25,7 +15,7 @@ class App extends React.Component {
                     <Switch>
                         <Route
                             path="/" exact
-                            render={() => <HomePage onBookClick={() => this.displayBookPage()} />} />
+                            component={HomePage} />
                         <Route
                             path="/book/:id" exact
                             component={BookPage} />
