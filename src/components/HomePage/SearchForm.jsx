@@ -34,16 +34,15 @@ class SearchForm extends React.Component {
                         variant="outline-secondary"
                         title={this.state.searchType}
                         id="input-group-dropdown-1"
-                        onSelect={event => this.handleTypeChange(event)}
-                    >
-                        <Dropdown.Item eventKey="All">All</Dropdown.Item>
-                        <Dropdown.Item eventKey="Title">Title</Dropdown.Item>
-                        <Dropdown.Item eventKey="Author">Author</Dropdown.Item>
-                        <Dropdown.Item eventKey="Text">Text</Dropdown.Item>
-                        <Dropdown.Item eventKey="Subject">Subject</Dropdown.Item>
-                        <Dropdown.Item eventKey="Lists">Lists</Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item eventKey="Advanced">Advanced</Dropdown.Item>
+                        onSelect={event => this.handleTypeChange(event)}>
+                            <Dropdown.Item eventKey="All">All</Dropdown.Item>
+                            <Dropdown.Item eventKey="Title">Title</Dropdown.Item>
+                            <Dropdown.Item eventKey="Author">Author</Dropdown.Item>
+                            <Dropdown.Item eventKey="Text">Text</Dropdown.Item>
+                            <Dropdown.Item eventKey="Subject">Subject</Dropdown.Item>
+                            <Dropdown.Item eventKey="Lists">Lists</Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item eventKey="Advanced">Advanced</Dropdown.Item>
                     </DropdownButton>
 
                     <FormControl 

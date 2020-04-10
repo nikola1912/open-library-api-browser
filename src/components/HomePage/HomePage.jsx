@@ -3,8 +3,6 @@ import SearchForm from './SearchForm.jsx';
 import BookContainer from './BookContainer.jsx';
 import BookPagination from './BookPagination.jsx';
 
-const BOOKS = require('./data.json');
-
 const SEARCH_API = "http://openlibrary.org/search.json?";
 
 class HomePage extends React.Component {
@@ -60,17 +58,6 @@ class HomePage extends React.Component {
                 });
             })
             .catch(error => this.setState({error, isLoading: false}));
-        /* this.setState({ data: this.formatBookSearchData(BOOKS) }, () => {
-            const pageCount = Math.floor(this.state.data.bookCount / this.state.booksPerPage);
-            this.setState({
-                pageCount,
-                paginationVisable: true,
-                isLoading: false
-            }, () => {
-                const pageCount = Math.floor(this.state.data.bookCount / this.state.booksPerPage);
-                this.setState({ pageCount: pageCount === 0 ? 1 : pageCount });
-            });
-        }); */
     }
 
     render() {
