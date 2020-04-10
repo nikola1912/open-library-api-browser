@@ -1,0 +1,28 @@
+.book-page {
+    background-color: rgb(250, 250, 250);
+    padding: 0 350px;
+    text-align: center;
+}
+
+.book-page * {
+    margin: 7px 0;
+}
+
+.title {
+    font-size: 1.8em;
+    font-weight: normal;
+}
+
+.cover {
+    height: 300px;
+    width: auto;
+}
+
+.link, .link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.subjects *, .subject-places *, .subject-people * {
+    text-align: justify;
+}
